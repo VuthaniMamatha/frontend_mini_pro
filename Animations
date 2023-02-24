@@ -1,0 +1,85 @@
+//HTML code
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width-device-width,initial-scale=1.0"/>
+        <link rel="stylesheet" href="mini_anm.css" />
+        <title>Scroll Animation</title>
+    </head>
+    <body>
+        <h1>Scroll to see the Animation</h1>
+        <div class="box"><h2><a href="https://www.w3schools.com/default.asp" style="text-decoration: none;color:white;">w3schools</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/html/default.asp" style="text-decoration: none;color:white;">HTML</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/css/default.asp" style="text-decoration: none;color:white;">CSS</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/js/default.asp" style="text-decoration: none;color:white;">JS</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/sql/default.asp" style="text-decoration: none;color:white;">SQL</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/python/default.asp" style="text-decoration: none;color:white;">Python</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/java/default.asp" style="text-decoration: none;color:white;">Java</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/php/default.asp" style="text-decoration: none;color:white;">PHP</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/bootstrap/bootstrap_ver.asp" style="text-decoration: none;color:white;">Bootstrap</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/c/index.php" style="text-decoration: none;color:white;">C</a></h2></div>
+        <div class="box"><h2><a href="https://www.w3schools.com/cpp/default.asp" style="text-decoration: none;color:white;">C++</a></h2></div>
+        <script src="animation.js"></script>
+    </body>
+</html>
+
+
+//CSS code
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+*{
+    box-sizing:border-box;
+}
+body{
+    background-color: #efedd6;
+    font-family: "Roboto",sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    overflow-x: hidden;
+}
+h1{
+    margin: 10px;
+}
+.box{
+    background-color: #867893;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:400px;
+    height:200px;
+    margin:10px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 5px rgba(0,0,0,0.3);
+    transform: translate(400%);
+    transition: transform 4s ease;
+}
+.box:nth-of-type(even){
+    transform: translateX(-400%);
+}
+.box.show{
+    transform: translateX(0);
+}
+.box h2{
+    font-size: 45px;
+}
+
+
+//JS code
+
+const boxes=document.querySelectorAll(".box");
+const checkBoxes=()=>{
+    const triggerBottom=(window.innerHeight/5)*4;
+    boxes.forEach((box)=>{
+        const boxTop=box.getBoundingClientRect().top;
+        if(boxTop<triggerBottom)
+        box.classList.add("show");
+        else box.classList.remove("show");
+    });
+};
+window.addEventListener("scroll",checkBoxes);
+checkBoxes();
